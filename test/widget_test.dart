@@ -14,6 +14,6 @@ void main() {
     expect(find.text('Pokédex'), findsOneWidget);
 
     // Fast forward timer to complete splash screen duration
-    await tester.pumpAndSettle(const Duration(seconds: 3));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
   });
 }
