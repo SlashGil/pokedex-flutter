@@ -1,19 +1,19 @@
 # ⚡ Pokédex Flutter Application
 
-A modern, responsive, and feature-rich Pokédex application built with **Flutter**, **Riverpod** state management, and **GraphQL** (PokeAPI v1beta).
+A modern, responsive, and feature-rich Pokédex mobile application built with **Flutter**, **Riverpod** state management, and **GraphQL** (PokeAPI v1beta).
 
 ---
 
-## 📸 Overview & Key Features
+## 🌟 Key Features
 
-* **⚡ GraphQL Network Integration**: Asynchronous data fetching powered by `graphql_flutter` connecting directly to PokeAPI GraphQL (`https://beta.pokeapi.co/graphql/v1beta`).
-* **🎨 Environment-Aware Splash Screen**: Animated splash screen that automatically detects build environment (`kDebugMode`):
-  * **Debug Mode**: Uses dark terminal theme (`#0F172A`), technical wireframe icon (`ic_pokedex_debug.svg`), and a `DEBUG BUILD` tag.
-  * **Production Mode**: Uses clean light theme (`#F6F8FC`), official Pokéball icon (`ic_pokedex_prod.svg`), and tagline.
-* **📱 Responsive Pokédex Grid View**: Displays formatted IDs (e.g. `#001`), capitalized names, high-resolution official artwork sprites, and element type badges.
-* **🔍 Instant Search & Dynamic Type Filtering**: Search Pokémon by name or ID `#001`, plus horizontal element type pill filters (Grass, Fire, Water, Electric, Dragon, Fairy, etc.).
-* **📊 Comprehensive Pokémon Stats View**: Hero artwork animations, physical metrics (Height in meters, Weight in kg), and progress stat bars for HP, ATK, DEF, SATK, SDEF, and SPD.
-* **🎯 Modern Material 3 Light Theme**: Styled with a clean off-white background (`#F6F8FC`), white card surfaces (`#FFFFFF`), Pokeball Red accent (`#EE1515`), and dynamic color palettes based on Pokémon element types.
+* **⚡ GraphQL API Integration**: Asynchronous data fetching powered by `graphql_flutter` connecting directly to PokeAPI GraphQL (`https://beta.pokeapi.co/graphql/v1beta`).
+* **✨ Dynamic Debug-to-Prod Splash Morph**:
+  * **Debug Mode**: Starts with a technical terminal dark theme (`#0F172A`), wireframe SVG icon (`ic_pokedex_debug.svg`), and `DEBUG BUILD` badge, then smoothly morphs with a cross-fade sequence into the Production Pokéball theme before opening the app.
+  * **Release Mode**: Instant clean light theme (`#F6F8FC`), official Pokéball SVG (`ic_pokedex_prod.svg`), and tagline.
+* **📱 Adaptive Android Launcher Icon**: Native Android adaptive vector icon (`res/mipmap-anydpi-v26/ic_launcher.xml`) scaled to fit within Android's 66dp safe zone without clipping.
+* **🔍 Instant Search & Element Type Filtering**: Search Pokémon by name or `#001` ID, plus a horizontal element type filter carousel (Grass, Fire, Water, Electric, Dragon, Fairy, etc.).
+* **📊 Detailed Pokémon View**: Hero artwork animations, physical metrics (Height in meters, Weight in kg), and progress stat bars for HP, ATK, DEF, SATK, SDEF, and SPD.
+* **🎯 Material 3 Light Theme**: Styled with a clean off-white background (`#F6F8FC`), white card surfaces (`#FFFFFF`), Pokeball Red accent (`#EE1515`), and dynamic element type color badges.
 
 ---
 
@@ -21,12 +21,12 @@ A modern, responsive, and feature-rich Pokédex application built with **Flutter
 
 | Category | Technology / Package | Purpose |
 | :--- | :--- | :--- |
-| **Framework** | Flutter 3.47+ / Dart 3.13+ | Cross-platform mobile development |
+| **Framework** | Flutter 3.47+ / Dart 3.13+ | Cross-platform mobile framework |
 | **State Management** | `flutter_riverpod` (`^2.6.1`) | Reactive state & query provider management |
-| **Networking** | `graphql_flutter` (`^5.3.0`) & `http` | GraphQL API client & caching |
+| **Networking** | `graphql_flutter` (`^5.3.0`) & `http` | GraphQL API queries & caching |
 | **SVG Rendering** | `flutter_svg` (`^2.3.0`) | High-fidelity vector graphics rendering |
 | **Image Caching** | `cached_network_image` (`^3.4.1`) | Smooth artwork network caching & placeholders |
-| **Typography** | `google_fonts` (`^6.3.3`) | Modern typography |
+| **Icons & Tooling** | `flutter_launcher_icons` (`^0.14.4`) | App launcher icon generation |
 
 ---
 
@@ -36,12 +36,12 @@ The project follows a **Feature-Oriented Clean Architecture** pattern:
 
 ```text
 lib/
-├── main.dart                      # Entry point (ProviderScope & GraphQLProvider)
+├── main.dart                      # App entry point (ProviderScope & GraphQLProvider)
 ├── core/
 │   ├── graphql/                   # GraphQLClient setup & PokeAPI endpoint
 │   └── theme/                     # AppTheme & 18 Element Type color mappings
 ├── data/
-│   ├── models/                    # Pokemon model & JSON deserialization
+│   ├── models/                    # Pokemon data model & JSON parsing
 │   ├── queries/                   # GraphQL query definitions for PokeAPI
 │   └── repositories/              # PokemonRepository data layer
 └── presentation/
@@ -60,7 +60,7 @@ lib/
 
 * [Flutter SDK](https://docs.flutter.dev/get-started/install) (3.24.0 or newer)
 * [Android SDK](https://developer.android.com/studio) / Android Studio
-* Device or Emulator for running the app
+* Connected Android Device or Emulator
 
 ### Installation & Running
 
@@ -85,14 +85,14 @@ lib/
    flutter test
    ```
 
-5. **Launch the application**:
+5. **Build & launch the application**:
    ```bash
    flutter run
    ```
 
 ---
 
-## 🎨 Design System & Colors
+## 🎨 Design System & Color Palette
 
 * **Background**: `#F6F8FC`
 * **Card Surface**: `#FFFFFF` (with soft elevation shadow)
@@ -104,6 +104,21 @@ lib/
   * **Flying**: `#A98FF3` | **Psychic**: `#F95587` | **Bug**: `#A6B91A` | **Rock**: `#B6A136`
   * **Ghost**: `#735797` | **Dragon**: `#6F35FC` | **Dark**: `#705746` | **Steel**: `#B7B7CE`
   * **Fairy**: `#D685AD` | **Normal**: `#A8A878`
+
+---
+
+## 📜 Commit Convention (Gitmoji)
+
+This project strictly adheres to Conventional Commits combined with Gitmoji:
+
+* `🏗️ feat(core)`: Project configuration, dependencies, theme & GraphQL setup.
+* `📦 feat(data)`: GraphQL queries, models & repository implementations.
+* `🧩 feat(presentation)`: Riverpod state providers & reusable UI widgets.
+* `📱 feat(ui)`: Screens, splash animations, detail view & entry points.
+* `📱 feat(android)`: Native Android launcher icon & manifest configurations.
+* `🎨 fix(android)`: Adaptive icon scaling and safe zone alignment.
+* `⚡ perf(splash)`: Splash animation speed and transition tuning.
+* `✨ feat(splash)`: Debug-to-Prod animated splash morphing.
 
 ---
 
