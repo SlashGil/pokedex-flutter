@@ -1,0 +1,7 @@
+flutter_launcher_icons:
+  android: "ic_launcher"
+  ios: true
+  remove_alpha_ios: true
+  image_path: "assets/icons/ic_pokedex_prod.svg"
+  adaptive_icon_background: "#F4F7F9"
+  adaptive_icon_foreground: "assets/icons/ic_pokedex_prod.svg"
